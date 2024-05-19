@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='js/main.js' type="module"></script>
+</head>
+<body>
+    <header>
+        <img src="images/logo.svg" alt="logo paginas" id="logo">
+        <nav>
+            <a class="item-menu" href="#">Nosotros</a>
+            <a class="item-menu" href="#">Anuncios</a>
+            <a class="item-menu" href="#">Blog</a>
+            <a class="item-menu" href="#">Contacto</a>
+        </nav>
+    </header>
+    <section id="administracion" class="section">
+        <h1>Administracion</h1>
+        <form id="form-item">
+            <input type="hidden" name="id">
+            <label for="txtTitulo">Titulo</label>
+            <input type="text" id="txtTitulo" name="titulo" placeholder="Titulo" required>
+            <label id = rdbTransaccion>Transaccion</label>
+            <input type="radio" id="rdbVenta" name="transaccion" class="rdbTransaccion" value = 'Venta'  checked>Venta
+            <input type="radio" id="rdbAlquiler" name="transaccion" class="rdbTransaccion" value = 'Alquiler'>Alquiler
+            <label for="txtDescripcion">Descripcion</label>
+            <input type="text" id="txtDescripcion" name="descripcion" placeholder="Descripcion" required>
+            <label for="txtPrecio">Precio</label>
+            <input type="text" id="txtPrecio" name="precio" placeholder="Precio" required>
+            <input type="text" id="txtPuertas" name="puertas" placeholder="Puertas" class="mid-input" required>
+            <input type="text" id="txtKMs" name="kms" placeholder="KMs" class="mid-input" required>
+            <input type="text" id="txtPotencia" name="potencia" placeholder="Potencia" class="mid-input" required>
+            <div class="btnFrm">
+                <input id="btnGuardar" type="submit" value="Guardar">
+                <input id="btnEliminar" type="button" value="Eliminar" class="oculto">
+                <input id="btnCancelar" type="button" value="Cancelar" class="oculto">
+                <input id="btnModificar" type="button" value="Modificar" class="oculto">
+            </div>
+        </form>
+        <div id="spinner-container"></div>
+        <div id="divTabla"></div>
+    </section>
+    <footer>
+        <nav>
+            <a class="item-menu" href="#nosotros">Nosotros</a>
+            <a class="item-menu" href="#anuncios">Anuncios</a>
+            <a class="item-menu" href="#nuestro-blog">Blog</a>
+            <a class="item-menu" href="#contacto">Contacto</a>
+        </nav>
+        <p id="derechos">Todos los derechos reservados &copy; 2024</p>
+    </footer>
+</body>
+</html>
