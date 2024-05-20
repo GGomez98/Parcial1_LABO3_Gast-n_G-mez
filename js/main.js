@@ -15,10 +15,10 @@ function onInit(){
     loadItems();
     rellenarTabla();
     escuchandoFormulario();
-    cargarOpciones('slcTipo',['rocoso', 'gaseoso', 'helado', 'enano' ]);
+    cargarOpciones(['rocoso', 'gaseoso', 'helado', 'enano' ]);
     document.addEventListener('click', handlerClick);
     btnEliminar.addEventListener('click', handlreEliminarAnuncio);
-    btnCancelar.addEventListener('click', actualizarFormulario);
+    btnCancelar.addEventListener('click', handlerCancelar);
     btnModificar.addEventListener('click', handlreModificarAnuncio);
 }
 
@@ -45,15 +45,15 @@ async function loadItems() {
     setTimeout(()=>{
       removerSpinner();
       rellenarTabla();
-    },3000)
+    },2500)
 }
 
-function cargarOpciones(idSelect ,lista){
-  const listaOpciones = document.getElementById(idSelect);
+function cargarOpciones(lista){
+  const listaOpciones = document.getElementById('selectTipo');
   lista.forEach(element => {
       let option = document.createElement('option');
       option.id = lista.indexOf(element)+1;
-      option.text = element;
+      option.textContent = element;
       option.value = element;
       listaOpciones.appendChild(option);
   });
@@ -130,7 +130,7 @@ function renderizarTable(tabla, contenedor) {
         removerSpinner();
         actualizarFormulario();
         rellenarTabla();
-        },3000)
+        },2500)
       }
       else {
           alert(respuesta.rta);
@@ -207,6 +207,11 @@ function modificarFuncionBoton(target) {
     btnCancelar.setAttribute("class", "oculto");
     btnModificar.setAttribute("class", "oculto");
   }
+}
+
+function handlerCancelar(e){
+  actualizarFormulario();
+  modificarFuncionBoton(e.target);
 }
 
 function handlerClick(e) {

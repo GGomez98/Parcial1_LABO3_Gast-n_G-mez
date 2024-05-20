@@ -19,6 +19,7 @@
                 <a class="item-menu" href="#">Contacto</a>
             </nav>
         </div>
+        <h1>Administrador de Planetas</h1>
     </header>
     <section id="administracion" class="section">
         <form id="form-item">
@@ -30,8 +31,8 @@
             <input type="text" id="txtTamanio" name="tamanio" placeholder="Tamaño" required>
             <label for="txtMasa">Masa</label>
             <input type="text" id="txtMasa" name="masa" placeholder="Masa" required>
-            <label for="slcTipo">Tipo</label>
-            <select name="tipo" id="slcTipo">
+            <label for="selectTipo">Tipo</label>
+            <select name="tipo" id="selectTipo">
                 <option>Seleccione una opcion</option>
             </select>
             <label for="txtDistancia">Distancia al sol</label>
@@ -41,7 +42,7 @@
             <label for="cbxAnillo">Presenta anillo</label>
             <input type="checkbox" id="cbxAnillo" name="anillo">
             <label for="txtAtmosfera">Composicion Atmosferica</label>
-            <textarea placeholder="Ingrese Composicion..." id="txtAtmosfera" name="compAtmosfera"></textarea>
+            <textarea placeholder="Ingrese Composicion..." id="txtAtmosfera" name="compAtmosfera" required></textarea>
             <div class="btnFrm">
                 <input id="btnGuardar" type="submit" value="Guardar">
                 <input id="btnEliminar" type="button" value="Eliminar" class="oculto">
