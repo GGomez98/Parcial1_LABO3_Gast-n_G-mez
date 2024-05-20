@@ -1,6 +1,6 @@
 // local-storage.js
 
-const delay = 1;
+const delay = 2.5;
 
 // Función para leer del localStorage
 export function leer(clave) {

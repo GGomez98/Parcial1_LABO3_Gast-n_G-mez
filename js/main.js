@@ -90,11 +90,36 @@ function renderizarTable(tabla, contenedor) {
         formulario.compAtmosfera.value
       );
 
+      const respuesta = model.verify();
+
       if(!parseFloat(formulario.distancia.value)){
         alert("La distancia debe ser numerica");
+        respuesta = respuesta.rta;
       }
 
-      const respuesta = model.verify();
+      if(!parseFloat(formulario.distancia.value)){
+        alert("La distancia debe ser numerica");
+        respuesta = respuesta.rta;
+      }
+
+      if(!parseFloat(formulario.tamanio.value)){
+        alert("El tamanño debe ser numerico");
+        respuesta = respuesta.rta;
+      }
+
+      if(formulario.vida.checked){
+        model.vida = 'Si';
+      }
+      else{
+        model.vida = "No";
+      }
+
+      if(formulario.anillo.checked){
+        model.anillo = 'Si';
+      }
+      else{
+        model.anillo = "No";
+      }
   
       if (respuesta.success) {
         inyectarSpinner();
@@ -113,9 +138,8 @@ function renderizarTable(tabla, contenedor) {
     });
 }
 
-  function actualizarFormulario(e) {
+  function actualizarFormulario() {
     formulario.reset();
-    modificarFuncionBoton(e.target);
 }
 
 /**
@@ -196,18 +220,19 @@ function handlerClick(e) {
     cargarFormulario(
       formulario,
       id,
-      planeta.titulo,
-      planeta.transaccion,
-      planeta.descripcion,
-      planeta.precio,
-      planeta.puertas,
-      planeta.kms,
-      planeta.potencia
+      planeta.nombre,
+      planeta.tamanio,
+      planeta.masa,
+      planeta.tipo,
+      planeta.distancia,
+      planeta.vida,
+      planeta.anillo,
+      planeta.compAtmosfera
     );
     modificarFuncionBoton(e.target);
   }else if (!e.target.matches("input")) {
-    modificarFuncionBoton(e.target);
     actualizarFormulario();
+    modificarFuncionBoton(e.target);
   }
 }
 
@@ -235,13 +260,15 @@ function handlreModificarAnuncio(e) {
       let id = parseInt(formulario.id.value);
       items.forEach(element=>{
         if(element.id == id){
-          element.titulo = formulario.querySelector('#txtTitulo').value,
-          element.transaccion = formulario.transaccion.value,
-          element.precio = formulario.querySelector('#txtPrecio').value,
-          element.descripcion = formulario.querySelector('#txtDescripcion').value,
-          element.puertas = formulario.querySelector('#txtPuertas').value,
-          element.kms = formulario.querySelector('#txtKMs').value,
-          element.potencia = formulario.querySelector('#txtPotencia').value
+          element.id = Date.now();
+          element.nombre = formulario.nombre.value;
+          element.tamanio = formulario.tamanio.value;
+          element.masa = formulario.masa.value;
+          element.tipo = formulario.tipo.value;
+          element.distancia = formulario.distancia.value;
+          element.vida = formulario.vida.value;
+          element.anillo = formulario.anillo.value;
+          element.compAtmosfera = formulario.compAtmosfera.value;
         }
       })
       const str = objectToJson(items);
