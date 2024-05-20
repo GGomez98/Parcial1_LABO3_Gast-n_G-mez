@@ -10,30 +10,38 @@
 </head>
 <body>
     <header>
-        <img src="images/logo.svg" alt="logo paginas" id="logo">
-        <nav>
-            <a class="item-menu" href="#">Nosotros</a>
-            <a class="item-menu" href="#">Anuncios</a>
-            <a class="item-menu" href="#">Blog</a>
-            <a class="item-menu" href="#">Contacto</a>
-        </nav>
+        <div class="nav-container">
+            <img src="img/logo.svg" alt="logo paginas" id="logo">
+            <nav>
+                <a class="item-menu" href="#">Nosotros</a>
+                <a class="item-menu" href="#">Anuncios</a>
+                <a class="item-menu" href="#">Blog</a>
+                <a class="item-menu" href="#">Contacto</a>
+            </nav>
+        </div>
     </header>
     <section id="administracion" class="section">
-        <h1>Administracion</h1>
         <form id="form-item">
+            <h1>Informacion del Planeta</h1>
             <input type="hidden" name="id">
-            <label for="txtTitulo">Titulo</label>
-            <input type="text" id="txtTitulo" name="titulo" placeholder="Titulo" required>
-            <label id = rdbTransaccion>Transaccion</label>
-            <input type="radio" id="rdbVenta" name="transaccion" class="rdbTransaccion" value = 'Venta'  checked>Venta
-            <input type="radio" id="rdbAlquiler" name="transaccion" class="rdbTransaccion" value = 'Alquiler'>Alquiler
-            <label for="txtDescripcion">Descripcion</label>
-            <input type="text" id="txtDescripcion" name="descripcion" placeholder="Descripcion" required>
-            <label for="txtPrecio">Precio</label>
-            <input type="text" id="txtPrecio" name="precio" placeholder="Precio" required>
-            <input type="text" id="txtPuertas" name="puertas" placeholder="Puertas" class="mid-input" required>
-            <input type="text" id="txtKMs" name="kms" placeholder="KMs" class="mid-input" required>
-            <input type="text" id="txtPotencia" name="potencia" placeholder="Potencia" class="mid-input" required>
+            <label for="txtNombre">Nombre</label>
+            <input type="text" id="txtNombre" name="nombre" placeholder="Nombre" required>
+            <label for="txtTamanio">Tamaño</label>
+            <input type="text" id="txtTamanio" name="tamanio" placeholder="Tamaño" required>
+            <label for="txtMasa">Masa</label>
+            <input type="text" id="txtMasa" name="masa" placeholder="Masa" required>
+            <label for="slcTipo">Tipo</label>
+            <select name="tipo" id="slcTipo">
+                <option>Seleccione una opcion</option>
+            </select>
+            <label for="txtDistancia">Distancia al sol</label>
+            <input type="text" id="txtDistancia" name="distancia" placeholder="Distancia" required>
+            <label for="cbxVida">Presenta vida</label>
+            <input type="checkbox" id="cbxVida" name="vida">
+            <label for="cbxAnillo">Presenta anillo</label>
+            <input type="checkbox" id="cbxAnillo" name="anillo">
+            <label for="txtAtmosfera">Composicion Atmosferica</label>
+            <textarea placeholder="Ingrese Composicion..." id="txtAtmosfera" name="compAtmosfera"></textarea>
             <div class="btnFrm">
                 <input id="btnGuardar" type="submit" value="Guardar">
                 <input id="btnEliminar" type="button" value="Eliminar" class="oculto">

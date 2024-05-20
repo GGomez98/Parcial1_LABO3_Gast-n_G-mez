@@ -8,17 +8,26 @@ body{
 }
 
 header{
-    background-color: #4682b4;
+    background-image: url('./img/background.jpg');
+    background-position: center;
     color: white;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    height: 10vh;
-    align-items: center;
+    justify-content: baseline;
+    height: 30vh;
+    align-items: start;
+}
+
+header div{
+    width: 100%;
+    background-color: #4683b46b;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
 }
 
 header img{
-    width: 20%;
+    width: fit-content;
     margin-left: 10px;
     height: 100%;
 }
@@ -26,7 +35,6 @@ header img{
 header nav{
     display: flex;
     justify-content: flex-end;
-    width: 78%;
     margin-right: 3px;
 }
 
@@ -49,7 +57,7 @@ section h1{
 
 section form{
     width: 50%;
-    height: 400px;
+    height: 500px;
     display: flex;
     flex-wrap: wrap;
     margin-left: 20px;
@@ -57,19 +65,14 @@ section form{
 }
 
 section form label{
-    width: 100%;
+    width: 45%;
     margin: 4px;
-}
-
-.mid-label{
-    width: 20%;
-    text-align: end;
 }
 
 section form input{
-    width: 100%;
+    width: 45%;
     margin: 4px;
-    height: 10%;
+    height: 5%;
 }
 
 .rdbTransaccion{
@@ -109,6 +112,11 @@ section table{
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+}
+
+#spinner{
+    transition: transform 1s ease-in-out;
+    transform: rotate(180deg);
 }
 
 #divTabla{

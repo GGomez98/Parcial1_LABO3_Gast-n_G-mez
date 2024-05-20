@@ -1,7 +1,7 @@
 import { escribir,jsonToObject,leer,objectToJson,limpiar } from "./local-storage.js";
-import {Anuncio_Auto} from "./Anuncio_Auto.js"
+import {Planeta} from "./Planeta.js"
 
-const KEY_STORAGE = "anuncios";
+const KEY_STORAGE = "planetas";
 let items = []; // array vacio
 const formulario = document.forms[0];
 const btnGuardar = document.getElementById("btnGuardar");
@@ -15,6 +15,7 @@ function onInit(){
     loadItems();
     rellenarTabla();
     escuchandoFormulario();
+    cargarOpciones('slcTipo',['rocoso', 'gaseoso', 'helado', 'enano' ]);
     document.addEventListener('click', handlerClick);
     btnEliminar.addEventListener('click', handlreEliminarAnuncio);
     btnCancelar.addEventListener('click', actualizarFormulario);
@@ -26,15 +27,16 @@ async function loadItems() {
     const objetos = jsonToObject(str) || [];
 
     objetos.forEach(obj => {
-        const model = new Anuncio_Auto(
+        const model = new Planeta(
             obj.id,
-            obj.titulo,
-            obj.transaccion,
-            obj.precio,
-            obj.descripcion,
-            obj.puertas,
-            obj.kms,
-            obj.potencia
+            obj.nombre,
+            obj.tamanio,
+            obj.masa,
+            obj.tipo,
+            obj.distancia,
+            obj.vida,
+            obj.anillo,
+            obj.compAtmosfera
         );
     
         items.push(model);
@@ -44,6 +46,17 @@ async function loadItems() {
       removerSpinner();
       rellenarTabla();
     },3000)
+}
+
+function cargarOpciones(idSelect ,lista){
+  const listaOpciones = document.getElementById(idSelect);
+  lista.forEach(element => {
+      let option = document.createElement('option');
+      option.id = lista.indexOf(element)+1;
+      option.text = element;
+      option.value = element;
+      listaOpciones.appendChild(option);
+  });
 }
 
 function rellenarTabla() {
@@ -65,17 +78,22 @@ function renderizarTable(tabla, contenedor) {
     formulario.addEventListener("submit", (e) => {
       e.preventDefault();
   
-      const model = new Anuncio_Auto(
+      const model = new Planeta(
         Date.now(),
-        formulario.querySelector('#txtTitulo').value,
-        formulario.transaccion.value,
-        formulario.querySelector('#txtPrecio').value,
-        formulario.querySelector('#txtDescripcion').value,
-        formulario.querySelector('#txtPuertas').value,
-        formulario.querySelector('#txtKMs').value,
-        formulario.querySelector('#txtPotencia').value
+        formulario.nombre.value,
+        formulario.tamanio.value,
+        formulario.masa.value,
+        formulario.tipo.value,
+        formulario.distancia.value,
+        formulario.vida.value,
+        formulario.anillo.value,
+        formulario.compAtmosfera.value
       );
-  
+
+      if(!parseFloat(formulario.distancia.value)){
+        alert("La distancia debe ser numerica");
+      }
+
       const respuesta = model.verify();
   
       if (respuesta.success) {
@@ -143,13 +161,14 @@ function cargarFormulario(formulario, ...datos) {
   //metodo que cargar el formulario con datos segun un ID recibido
 
   formulario.id.value = datos[0]; // este atributo esta como hidden, oculto
-  formulario.titulo.value = datos[1];
-  formulario.transaccion.value = datos[2];
-  formulario.descripcion.value = datos[3];
-  formulario.precio.value = datos[4];
-  formulario.puertas.value = datos[5];
-  formulario.kms.value = datos[6];
-  formulario.potencia.value = datos[7];
+  formulario.nombre.value = datos[1];
+  formulario.tamanio.value = datos[2];
+  formulario.masa.value = datos[3];
+  formulario.tipo.value = datos[4];
+  formulario.distancia.value = datos[5];
+  formulario.vida.value = datos[6];
+  formulario.anillo.value = datos[7];
+  formulario.compAtmosfera.value = datos[8];
 }
 
 function modificarFuncionBoton(target) {
@@ -172,18 +191,18 @@ function handlerClick(e) {
 
     let id = e.target.parentNode.dataset.id;
 
-    const anuncio = items.filter((p) => p.id === parseInt(id))[0]; //filter devuelve un array de las coincidencias, entonces le paso la pos 0
-    console.log("🚀 ~ handlerClick ~ anuncio:", anuncio);
+    const planeta = items.filter((p) => p.id === parseInt(id))[0]; //filter devuelve un array de las coincidencias, entonces le paso la pos 0
+    console.log("🚀 ~ handlerClick ~ planeta:", planeta);
     cargarFormulario(
       formulario,
       id,
-      anuncio.titulo,
-      anuncio.transaccion,
-      anuncio.descripcion,
-      anuncio.precio,
-      anuncio.puertas,
-      anuncio.kms,
-      anuncio.potencia
+      planeta.titulo,
+      planeta.transaccion,
+      planeta.descripcion,
+      planeta.precio,
+      planeta.puertas,
+      planeta.kms,
+      planeta.potencia
     );
     modificarFuncionBoton(e.target);
   }else if (!e.target.matches("input")) {
@@ -238,10 +257,11 @@ function handlreModificarAnuncio(e) {
 function inyectarSpinner() {
   const spinner = document.createElement("img");
   const contenedor = document.getElementById("spinner-container");
-  spinner.setAttribute("src", "./img/spinner.gif");
+  spinner.setAttribute("src", "./img/logo.svg");
   spinner.setAttribute("alt", "imagen spinner");
   spinner.setAttribute("height", "64px");
   spinner.setAttribute("width", "64px");
+  spinner.setAttribute("id","spinner");
   contenedor.appendChild(spinner);
 }
 
