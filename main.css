@@ -47,7 +47,7 @@ header nav a{
     color: white;
 }
 
-a:hover{
+header nav a:hover{
     background-color: #4683b4c2;
 }
 
@@ -147,7 +147,7 @@ td{
 }
 
 footer{
-    background-color: #4682b4;
+    background-color: black;
     color: white;
     display: flex;
     flex-wrap: wrap;
@@ -161,12 +161,18 @@ footer nav{
     width: 50%;
     display: flex;
     align-items: center;
+    text-align: center;
 }
 
 footer nav a{
     margin: 5px;
     text-decoration: none;
     color: white;
+    height: 100%;
+}
+
+footer nav a:hover{
+    background-color: gray;
 }
 
 footer p{
